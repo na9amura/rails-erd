@@ -178,7 +178,7 @@ module RailsERD
     def filtered_entities
       @domain.entities.reject { |entity|
         options.exclude.present? && entity.name.match?(options.exclude) or
-        options[:only].present? && !entity.name.match?(options[:only]) or
+        options[:only].present? && entity.model && !entity.name.match?(options[:only]) or
         !options.inheritance && entity.specialized? or
         !options.polymorphism && entity.generalized? or
         !options.disconnected && entity.disconnected?
